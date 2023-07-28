@@ -2,31 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationHandler : MonoBehaviour
+public class AnimatorController : MonoBehaviour
 {
     private Animator _animator;
     private Health _health;
     private FxSpawner fxSpawner;
 
-    public virtual void Awake()
+    protected virtual void Awake()
     {
         _animator = GetComponent<Animator>();
         fxSpawner = GetComponent<FxSpawner>();
         _health = GetComponent<Health>();
     }
-    public virtual void Start() 
+    protected virtual void Start() 
     {
         _health.onDeath += Die;
-        CombatManager.instance.combat += Attack;
+        CombatManager.instance.combat += Attacking;
     }
 
-    public virtual void OnDisable() 
+    protected virtual void OnDisable() 
     {
         _health.onDeath -= Die;
-        CombatManager.instance.combat -= Attack;
+        CombatManager.instance.combat -= Attacking;
     }
 
-    protected void Run()
+    protected void Running()
     {
         _animator.SetBool("Run", true);
     }
@@ -36,7 +36,7 @@ public class AnimationHandler : MonoBehaviour
         _animator.SetBool("Run" , false);
     }
 
-    protected void Attack()
+    protected void Attacking()
     {
         _animator.SetTrigger("Attack");
     }

@@ -79,8 +79,10 @@ GameObject:
   - component: {fileID: 8169377563064502932}
   - component: {fileID: 5698987372158399568}
   - component: {fileID: 715322435}
-  - component: {fileID: 377947048}
   - component: {fileID: 377947049}
+  - component: {fileID: 2103032273}
+  - component: {fileID: 2103032274}
+  - component: {fileID: 2941125717421074573}
   m_Layer: 0
   m_Name: EnemyCharacter
   m_TagString: Untagged
@@ -109,7 +111,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8957083429406952469
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -117,7 +119,7 @@ Animator:
   m_GameObject: {fileID: 8957083429414178905}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 555dddb0fd62c1a4a8a87449606cff55, type: 3}
-  m_Controller: {fileID: 9100000, guid: 0d2a25dfb60c5e4479a2490b7db6aba4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9608ec14a6fe8fd47bf10a79da7d7e6b, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -126,8 +128,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &2213906798935928715
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -209,18 +210,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 10
---- !u!114 &377947048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8957083429414178905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7049a9b42ef5ed441aabd350fc1db942, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &377947049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +223,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fxToSpawn: {fileID: 3286998447487104364, guid: d9fd594ec43c3504db6a31a47e3ebec9, type: 3}
+--- !u!114 &2103032273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957083429414178905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e13fd1acf3da84f8dcc0c11972610e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: {fileID: 0}
+  waypointTolerance: 1
+--- !u!195 &2103032274
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957083429414178905}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2941125717421074573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957083429414178905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d009d2eeb99f2045ae2d6e7258026e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8957083429414179659
 GameObject:
   m_ObjectHideFlags: 0
