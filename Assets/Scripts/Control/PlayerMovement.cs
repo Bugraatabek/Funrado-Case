@@ -13,6 +13,7 @@ public class PlayerMovement : Movement
     {
         InputReader.instance.input += Move;
         InputReader.instance.noInput += StopMoving;
+        FinishTrigger.instance.gameFinished += DisableControls;
     }
     private void OnDisable() 
     {
@@ -34,5 +35,10 @@ public class PlayerMovement : Movement
         onMoving?.Invoke();
         Vector3 offset = (Vector3.right * xDirection + Vector3.forward * zDirection);
         base.SetDestination(transform.position , offset);
+    }
+
+    private void DisableControls()
+    {
+        this.enabled = false;
     }
 }
