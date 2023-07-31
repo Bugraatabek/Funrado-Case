@@ -15,13 +15,14 @@ public class KeyUI : MonoBehaviour
 
     private void UpdateUI(EKey keyColor)
     {
-        if(keyColor == EKey.Blue)
+        switch(keyColor)
         {
+            case EKey.Blue:
             CheckBlue();
-        }
-        if(keyColor == EKey.Red)
-        {
+            break;
+            case EKey.Red:
             CheckRed();
+            break;
         }
     }
 
