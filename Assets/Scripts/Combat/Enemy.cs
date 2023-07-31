@@ -6,5 +6,4 @@ public class Enemy : Target, IDealWithCollision
     {
         CombatManager.instance.StartCombat(other.GetComponent<Target>(), this);
     }
-
 }

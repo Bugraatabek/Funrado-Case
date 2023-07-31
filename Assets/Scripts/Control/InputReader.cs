@@ -7,10 +7,9 @@ public class InputReader : MonoBehaviour
 {
     public static InputReader instance;
 
-    [SerializeField] private FloatingJoystick _floatingJoystick;
-    public event Action<float> moveVertical;
-    public event Action<float> moveHorizontal;
-    public event Action idle;
+    [SerializeField] private FixedJoystick _fixedJoystick;
+    public event Action<float, float> input;
+    public event Action noInput;
 
     private void Awake() 
     {
@@ -26,16 +25,10 @@ public class InputReader : MonoBehaviour
 
     private void Update() 
     {
-        idle?.Invoke();
-        if(_floatingJoystick.Vertical != 0)
+        noInput?.Invoke();
+        if(_fixedJoystick.Vertical != 0 || _fixedJoystick.Horizontal != 0)
         {
-            moveVertical?.Invoke(_floatingJoystick.Vertical);
-        }
-
-        if(_floatingJoystick.Horizontal != 0)
-        {
-            moveHorizontal?.Invoke(_floatingJoystick.Horizontal);
-        }
-        
+            input?.Invoke(_fixedJoystick.Vertical, _fixedJoystick.Horizontal);
+        } 
     }
 }

@@ -6,10 +6,9 @@ using UnityEngine;
 public class CombatManager : MonoBehaviour
 {
     public static CombatManager instance;
-    private float maxCombatDistance = 3f;
-    public event Action combat;
-
     public Dictionary<Target,bool> targetsInCombat;
+    
+    private float maxCombatDistance = 3f;
 
     private void Awake() 
     {
@@ -35,11 +34,10 @@ public class CombatManager : MonoBehaviour
 
     public void StartCombat(Target instigator, Target target)
     {
-        StartCoroutine(Combat(instigator, target));
-        
+        if(GetInCombatCount() >= 2) return;
         ChangeCombatState(instigator, true);
         ChangeCombatState(target, true);
-        
+        StartCoroutine(Combat(instigator, target));
     }
 
     private IEnumerator Combat(Target instigator, Target target)
@@ -51,22 +49,25 @@ public class CombatManager : MonoBehaviour
             if(instigator.IsDead() || target.IsDead() || Vector3.Distance(instigator.transform.position, target.transform.position) > maxCombatDistance)
             {
                 ChangeCombatState(target, false);
-                if(GetInCombatCount() <= 2)
-                {
-                    ChangeCombatState(instigator, false);
-                }
+                ChangeCombatState(instigator, false);
                 yield break;
-            } 
-            combat?.Invoke();
+            }
             
             if(instigatorLevel < targetLevel)
             {
-                instigator.TakeDamage(targetLevel - instigatorLevel);
+                target.Attack(instigator);
+                instigator.Defense();
             }
             else
             {
-                target.TakeDamage(targetLevel - instigatorLevel);
-            } 
+                if(instigatorLevel == targetLevel)
+                {
+                    instigatorLevel++;
+                }
+                instigator.Attack(target);
+                target.Defense();
+            }
+
             yield return new WaitForSeconds(1);
         }
     }

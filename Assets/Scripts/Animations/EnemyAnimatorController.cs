@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class EnemyAnimatorController : AnimatorController 
 {
-    AI ai;
+    EnemyMovement ai;
 
     protected override void Awake()
     {
         base.Awake();
-        ai = GetComponent<AI>();
+        ai = GetComponent<EnemyMovement>();
     }
 
     protected override void Start()

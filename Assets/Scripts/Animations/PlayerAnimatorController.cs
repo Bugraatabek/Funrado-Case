@@ -2,25 +2,25 @@ using UnityEngine;
 
 public class PlayerAnimatorController : AnimatorController 
 {
-    Mover _mover;
+    PlayerMovement _movement;
 
     protected override void Awake()
     {
         base.Awake();
-        _mover = GetComponent<Mover>();
+        _movement = GetComponent<PlayerMovement>();
     }
 
     protected override void Start()
     {
         base.Start();
-        InputReader.instance.idle += base.Idle;
-        _mover.onMoving += base.Running;
+        _movement.onStopMoving += base.Idle;
+        _movement.onMoving += base.Running;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        _mover.onMoving -= base.Running;
-        InputReader.instance.idle -= base.Idle;
+        _movement.onMoving -= base.Running;
+        _movement.onStopMoving -= base.Idle;
     } 
 }

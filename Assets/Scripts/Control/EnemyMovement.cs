@@ -2,20 +2,24 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AI : MonoBehaviour
+public class EnemyMovement : Movement
 {
-    [SerializeField] Path path;
-    //[SerializeField] AIMover aIMover;  
-    private NavMeshAgent navMeshAgent;
+    public event Action idle;
+    public event Action running;
+
+    [SerializeField] Path path; 
+    
     [SerializeField] private float waypointTolerance = 3f;
     private int _currentWaypointIndex = 0;
 
-    public event Action running;
-    public event Action idle;
+    FieldOfView fieldOfView;
+    GameObject player;
 
-    private void Awake() 
+    protected override void Awake()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        base.Awake();
+        player = GameObject.FindWithTag("Player");
+        fieldOfView = GetComponent<FieldOfView>();
     }
 
     private void Update() 
@@ -27,17 +31,34 @@ public class AI : MonoBehaviour
     {
         if(CombatState() == true) 
         {
-            navMeshAgent.isStopped = true;
+            base.Stop();
+            Combat();
             return;
         }
-        navMeshAgent.isStopped = false;
+        base.Resume();
+        
+        if(fieldOfView.CanSeeTarget)
+        {
+            base.SetDestination(player.transform.position);
+            return;
+        }
+
         if(AtWaypoint(_currentWaypointIndex))
         {
             UpdateWaypointIndex();
             return;
         }
-        navMeshAgent.destination = path.GetWaypoint(_currentWaypointIndex);
+        
+        base.SetDestination(path.GetWaypoint(_currentWaypointIndex));
         AnnounceState();
+    }
+
+    private void Combat()
+    {
+        if(player.activeInHierarchy)
+        {
+            transform.LookAt(player.transform);
+        }
     }
 
     private void UpdateWaypointIndex()
@@ -58,11 +79,11 @@ public class AI : MonoBehaviour
 
     private void AnnounceState()
     {
-        //add atacking state
-        if(navMeshAgent.destination != null)
+        if(CombatState() == true) return;
+        
+        if(base.isThereADestination())
         {
             running?.Invoke();
-            
         }
         else
         {
