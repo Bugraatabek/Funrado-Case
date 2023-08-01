@@ -695,6 +695,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteriorWall (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6041855111420440683, guid: c1e75bf94629064488d3f09baad562bf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8333293281810408072, guid: c1e75bf94629064488d3f09baad562bf, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2522,7 +2526,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1143490187
@@ -2540,7 +2544,7 @@ MonoBehaviour:
   blueKeyPrefab: {fileID: 4501144914427686208, guid: 237e6967376eed2498148354f9df95d1, type: 3}
   redKeyPrefab: {fileID: 4348729579615747607, guid: 148008f2cf517db47a99642f88c98728, type: 3}
   destination: {fileID: 814945175}
-  startingPosition: {x: 0, y: 0, z: 0}
+  startingPosition: {x: 0, y: -200, z: 0}
 --- !u!4 &1174821753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3173626129499672671, guid: e9d2d29413e44d249b0df39c23018d9f, type: 3}
@@ -3134,11 +3138,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3150,11 +3154,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 960
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 645
+      value: -0.00012207
       objectReference: {fileID: 0}
     - target: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_LocalPosition.x
